@@ -70,7 +70,7 @@ class App extends React.Component<{ }, AppState>{
     render() {
         return(
             <div className='app'>
-                <AppInfo/>
+                <AppInfo data={this.state.data}/>
 
                 <div className='search-panel'>
                     <SearchPanel />
