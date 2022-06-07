@@ -6,7 +6,11 @@ interface EmployeesListItemProps{
     salary: number
     id: number
     key: number
+    increase: boolean
+    rise: boolean
     deletedData: (id: number) => void
+    increaseWorker: (id: number) => void
+    riseWorker: (id: number) => void
 }
 
 interface EmployeesListItemState {
@@ -17,38 +21,28 @@ interface EmployeesListItemState {
 class EmployeesListItem extends React.Component<EmployeesListItemProps, EmployeesListItemState>{
     constructor(props: EmployeesListItemProps) {
         super(props);
-        this.state = {
-            increase: false,
-            upgrade: false
-        }
     }
 
     handleIncrease = ():void => {
-        this.setState(state => ({
-            increase: !state.increase
-        }))
+        this.props.increaseWorker(this.props.id)
     }
 
     handleUpgrade = ():void => {
-        this.setState(state => ({
-            upgrade: !state.upgrade
-        }))
+        this.props.riseWorker(this.props.id)
     }
 
     handleDeleteData = () => {
         this.props.deletedData(this.props.id)
     }
 
-
-
     render() {
         let classStyle: string = 'list-group-item d-flex justify-content-between'
 
-        if (this.state.increase) {
+        if (this.props.increase) {
             classStyle += ' increase'
         }
 
-        if (this.state.upgrade) {
+        if (this.props.rise) {
             classStyle += ' like'
         }
 
